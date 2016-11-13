@@ -41,8 +41,9 @@ $(document).ready(function(){
                 //$("#hr0-high").text("Test of 5 day forecast " + JSON.stringify(data1));
                 
                 //  3rd column
-                $("#hr2-high").text("High: " + JSON.stringify(data1.DailyForecasts[0].Temperature.Maximum.Value + " " +data1.DailyForecasts[0].Temperature.Maximum.Unit));
-                $("#hr2-low").text("Low: " + JSON.stringify(data1.DailyForecasts[0].Temperature.Minimum.Value + " " +data1.DailyForecasts[0].Temperature.Minimum.Unit));
+                $("#hr2-high").text("High: " + JSON.stringify(data1.DailyForecasts.Temperature[0].Maximum.Value + " " +data1.DailyForecasts.Temperature[0].Maximum.Unit));
+                $("#hr2-time").text("Date: "+ JSON.stringify(data1.DailyForecasts.Date[0]);
+                //$("#hr2-low").text("Low: " + JSON.stringify(data1.DailyForecasts[0].Temperature.Minimum.Value + " " +data1.DailyForecasts[0].Temperature.Minimum.Unit));
                 /*
                 //  4th column
                 $("#hr3-high").text("High: " + JSON.stringify(data[17].Temperature.Value + " " +data[17].Temperature.Unit));

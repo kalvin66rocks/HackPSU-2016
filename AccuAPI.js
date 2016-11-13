@@ -1,5 +1,8 @@
 $(document).ready(function(){
     $('#weatherButton').click(function() {
+		fetchWeather();
+	});
+	function fetchWeather(){
         $.ajax({
             type: "GET",
             dataType: "jsonp",
@@ -10,25 +13,17 @@ $(document).ready(function(){
                 //alert(JSON.stringify(data[0].Temperature.Value + data[0].Temperature.Unit))
                 
                 //  1st column
-                $("#hr0-high").text("High: " + JSON.stringify(data[0].DateTime));
-                //$("#hr0-high").text("High: " + JSON.stringify(data[0].Temperature.Value + " " + data[0].Temperature.Unit));
-                $("#hr0-low").text("Low: " + JSON.stringify(data[0].Temperature.Value + " " + data[0].Temperature.Unit));
+				var temp1 = JSON.stringify(data[0].Temperature.Value + " " + data[0].Temperature.Unit);
+				temp1 = temp1.substring(1,(temp1.length)-1);
+                $("#hr0-current").text("Current Temperature: " + temp1);
+				var condition = JSON.stringify(data[0].IconPhrase);
+				condition = condition.substring(1,(condition.length)-1);
+                $("#hr0-precip").text("Conditions are " + condition);
                 
-                
-                //  2nd column
-                $("#hr1-high").text("High: " + JSON.stringify(data[23].Temperature.Value + " " + data[23].Temperature.Unit));
-                $("#hr1-low").text("Low: " + JSON.stringify(data[23].Temperature.Value + " " + data[23].Temperature.Unit));
-                
-                /*
-                //  3rd column
-                $("#hr2-high").text("High: " + JSON.stringify(data[11].Temperature.Value + " " +data[11].Temperature.Unit));
-                $("#hr2-low").text("Low: " + JSON.stringify(data[11].Temperature.Value + " " + data[11].Temperature.Unit));
-                
-                //  4th column
-                $("#hr3-high").text("High: " + JSON.stringify(data[17].Temperature.Value + " " +data[17].Temperature.Unit));
-                $("#hr3-low").text("Low: " + JSON.stringify(data[17].Temperature.Value + " " + data[17].Temperature.Unit));
-                */
-            }//end success function
+            },//end success function
+			error: function(){
+				setTimeout(fetchWeather,100);
+			}
         });//end ajax call
         $.ajax({
             type: "GET",
@@ -40,21 +35,28 @@ $(document).ready(function(){
                 //alert(JSON.stringify(data1))
                 //$("#hr0-high").text("Test of 5 day forecast " + JSON.stringify(data1));
                 
-                //  3rd column
-                $("#hr2-high").text("High: " + JSON.stringify(data1.DailyForecasts.Temperature[0].Maximum.Value + " " +data1.DailyForecasts.Temperature[0].Maximum.Unit));
-                $("#hr2-time").text("Date: "+ JSON.stringify(data1.DailyForecasts.Date[0]);
-                //$("#hr2-low").text("Low: " + JSON.stringify(data1.DailyForecasts[0].Temperature.Minimum.Value + " " +data1.DailyForecasts[0].Temperature.Minimum.Unit));
-                /*
-                //  4th column
-                $("#hr3-high").text("High: " + JSON.stringify(data[17].Temperature.Value + " " +data[17].Temperature.Unit));
-                $("#hr3-low").text("Low: " + JSON.stringify(data[17].Temperature.Value + " " + data[17].Temperature.Unit));
-                */
+                //  2nd column
+                $("#hr1-high").text("High: " + JSON.stringify(data1.DailyForecasts[0].Temperature.Maximum.Value + " " + data1.DailyForecasts[0].Temperature.Maximum.Unit));
+                $("#hr1-low").text("Low: " + JSON.stringify(data1.DailyForecasts[0].Temperature.Minimum.Value + " " + data1.DailyForecasts[0].Temperature.Minimum.Unit));
+				$("#hr1-time").text("Date: "+ JSON.stringify(data1.DailyForecasts[0].Date));
                 
-            }//end success function
+                //  3rd column
+                $("#hr2-high").text("High: " + JSON.stringify(data1.DailyForecasts[1].Temperature.Maximum.Value + " " + data1.DailyForecasts[1].Temperature.Maximum.Unit));
+                $("#hr2-low").text("Low: " + JSON.stringify(data1.DailyForecasts[1].Temperature.Minimum.Value + " " + data1.DailyForecasts[1].Temperature.Minimum.Unit));
+				$("#hr2-time").text("Date: "+ JSON.stringify(data1.DailyForecasts[1].Date));
+				
+				//  4th column
+                $("#hr3-high").text("High: " + JSON.stringify(data1.DailyForecasts[2].Temperature.Maximum.Value + " " + data1.DailyForecasts[2].Temperature.Maximum.Unit));
+                $("#hr3-low").text("Low: " + JSON.stringify(data1.DailyForecasts[2].Temperature.Minimum.Value + " " + data1.DailyForecasts[2].Temperature.Minimum.Unit));
+				$("#hr3-time").text("Date: "+ JSON.stringify(data1.DailyForecasts[2].Date));
+                  
+            },//end success function
+			error: function(){
+				setTimeout(fetchWeather,100);
+			}
         });//end ajax call
-    });//end click
-});//end function
+	}//end function
   
-        
+});   
 
 

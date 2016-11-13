@@ -20,7 +20,7 @@ $(document).ready(function(){
 				condition = condition.substring(1,(condition.length)-1);
                 $("#hr0-precip").text("Conditions are " + condition);
 				
-				$("#current_image").attr('src','file:///C:\\Users\\kalvi_000\\Documents\\GitHub\\HackPSU-2016\\' + Hour1APICond(condition,data));                
+				$("#current_image").attr('src','file:\\home\\pi\\smartmirror\\HackPSU-2016\\' + Hour1APICond(condition,data));                
             },
 			error: function(){
 				setTimeout(fetchWeather,100);
@@ -42,7 +42,7 @@ $(document).ready(function(){
 				$("#hr1-time").text("Date: "+ JSON.stringify(data1.DailyForecasts[0].Date));
 				var condition1 = JSON.stringify(data1.DailyForecasts[0].Day.IconPhrase);
 				condition1 = condition1.substring(1,(condition1.length)-1);
-				$("#today_image").attr('src','file:///C:\\Users\\kalvi_000\\Documents\\GitHub\\HackPSU-2016\\' + DayAPICond(condition1));
+				$("#today_image").attr('src','file:\\home\\pi\\smartmirror\\HackPSU-2016\\' + DayAPICond(condition1));
                 
                 //  Tomorrow
                 $("#hr2-high").text("High: " + JSON.stringify(data1.DailyForecasts[1].Temperature.Maximum.Value + " " + data1.DailyForecasts[1].Temperature.Maximum.Unit));
@@ -50,7 +50,7 @@ $(document).ready(function(){
 				$("#hr2-time").text("Date: "+ JSON.stringify(data1.DailyForecasts[1].Date));
 				var condition2 = JSON.stringify(data1.DailyForecasts[0].Day.IconPhrase);
 				condition2 = condition2.substring(1,(condition2.length)-1);
-				$("#today_image").attr('src','file:///C:\\Users\\kalvi_000\\Documents\\GitHub\\HackPSU-2016\\' + DayAPICond(condition2));
+				$("#today_image").attr('src','file:\\home\\pi\\smartmirror\\HackPSU-2016\\' + DayAPICond(condition2));
 				
 				//  next Day
                 $("#hr3-high").text("High: " + JSON.stringify(data1.DailyForecasts[2].Temperature.Maximum.Value + " " + data1.DailyForecasts[2].Temperature.Maximum.Unit));
@@ -58,7 +58,7 @@ $(document).ready(function(){
 				$("#hr3-time").text("Date: "+ JSON.stringify(data1.DailyForecasts[2].Date));
 				var condition3 = JSON.stringify(data1.DailyForecasts[0].Day.IconPhrase);
 				condition3 = condition3.substring(1,(condition3.length)-1);
-				$("#today_image").attr('src','file:///C:\\Users\\kalvi_000\\Documents\\GitHub\\HackPSU-2016\\' + DayAPICond(condition3));
+				$("#today_image").attr('src','file:\\home\\pi\\smartmirror\\HackPSU-2016\\' + DayAPICond(condition3));
                   
             },//end success function
 			error: function(){
